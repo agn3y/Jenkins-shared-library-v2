@@ -1,9 +1,15 @@
 def call() {
-    echo "building the docker image..."
+    echo "🔧 Starting Docker image build process..."
+    def imageName = env.IMAGE_NAME ?: 'agneypatel/test-repoo:latest'
+    echo "📦 Image name to build and push: ${imageName}"
     withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t agneypatel/test-repoo:1.7 .'
+        echo "🐳 Building Docker image..."
+        sh "docker build -t ${imageName} ."
+        echo "🔐 Logging in to DockerHub..."
         sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push agneypatel/test-repoo:1.7'
+        echo "🚀 Pushing image to DockerHub..."
+        sh "docker push ${imageName}"
+        echo "✅ Docker image pushed successfully: ${imageName}"
     }
 }
 
