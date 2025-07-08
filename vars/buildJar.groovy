@@ -1,4 +1,5 @@
-def buildJar() {
-    echo "building the application..."
-    sh 'mvn package'
+def call() {
+    echo "building jar"
+    sh "mvn clean package"
 }
+
