@@ -1,4 +1,4 @@
-def buildImage() {
+def call() {
     echo "building the docker image..."
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
@@ -6,3 +6,4 @@ def buildImage() {
         sh 'docker push nanajanashia/demo-app:jma-2.0'
     }
 }
+
