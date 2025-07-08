@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 import com.example.Docker
 
-def call(String imageName) {
-    def docker = new Docker(this)
-    docker.buildDockerImage(imageName)
+def call() {
+    def imageName = env.IMAGE_NAME ?: 'agneypatel/test-repoo:latest'
+    return new Docker(this).buildDockerImage(imageName)
 }
+
