@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 def call() {
     echo "🔧 Starting Docker image build process..."
     def imageName = env.IMAGE_NAME ?: 'agneypatel/test-repoo:latest'
